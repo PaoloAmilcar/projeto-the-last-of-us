@@ -1,0 +1,48 @@
+/*
+    OBJETIVO - Ao clicar em um botão do carrossel temos que mostrar a imagem de fundo correspondente;
+    - passo 1 - Achar uma maneira de pegar o elemento HTML dos botões;
+    - passo 2 - Conseguir identificar o clique do usuário no botão;
+    - passo 3 - Desmarcar o botão selecionado anterior;
+    - passo 4 - Marcar o botão clicado como se estivesse selecionado;
+    - passo 5 - Esconder a imagem anterior;
+    - passo 6 - Fazer aparecer a imagem correspondente ao botão clicado;
+*/
+
+
+const botoesCarrossel = document.querySelectorAll('.botao');
+const imagens = document.querySelectorAll('.imagem')
+
+botoesCarrossel.forEach((botao, indice) => {
+    botao.addEventListener('click', () => {
+
+
+        desativarBotaoSelecionado();
+
+
+        selecionarBotaoCarrossel(botao);
+
+
+        esconderImagemAtiva();
+
+
+        mostrarImagemDeFundo(indice);
+    })
+})
+
+function desativarBotaoSelecionado() {
+    const botaoSelecionado = document.querySelector('.selecionado');
+    botaoSelecionado.classList.remove('selecionado');
+}
+
+function selecionarBotaoCarrossel(botao) {
+    botao.classList.add("selecionado");
+}
+
+function esconderImagemAtiva() {
+    const imagemAtiva = document.querySelector('.ativa');
+    imagemAtiva.classList.remove('ativa');
+}
+
+function mostrarImagemDeFundo(indice) {
+    imagens[indice].classList.add('ativa');
+}
